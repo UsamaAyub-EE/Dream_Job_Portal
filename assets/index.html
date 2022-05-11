@@ -1,14 +1,15 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
 
-<title>Elegant Template By W3 Template</title>
+<title>Dream Job Portal</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="style.css"/>
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="css/jquery.fancybox.min.css"/>
-<link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css"/>
-<link rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/jquery.fancybox.min.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.min.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/owl.theme.default.min.css' %}"/>
 
 <!-- Font Google -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
@@ -19,17 +20,18 @@
 
 <body>
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg">
-  <div class="container"> <a class="navbar-brand navbar-logo" href="#"> <img src="images/logo-white.png" alt="logo" class="logo-1"> </a>
+<nav class="navbar navbar-collapse-lg">
+  <div class="container"> <a class="navbar-brand navbar-logo" href="#"> <img src="{% static 'images/logo-white.png' %}" alt="logo" class="logo-1"> </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active"> <a class="nav-link">Home</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="add_company">Add Company</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="add_business_stream">Add Business Stream</a> </li>
+        <!-- <li class="nav-item"> <a class="nav-link" href="add_company">Add Company</a> </li> -->
+        <!-- <li class="nav-item"> <a class="nav-link" href="add_business_stream">Add Business Stream</a> </li> -->
+        <li class="nav-item"> <a class="nav-link" href="admin_login">Log in as admin</a> </li>
         <li class="nav-item"> <a class="nav-link" href="add_job_seeker">Sign up as job seeker</a> </li>
         <li class="nav-item"> <a class="nav-link" href="job_seeker_login">Log in as job seeker</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="add_job_type">Add a jobtype</a> </li>
+        <!-- <li class="nav-item"> <a class="nav-link" href="add_job_type">Add a jobtype</a> </li> -->
         <li class="nav-item"> <a class="nav-link" href="company_login">Log in as compnay</a> </li>
       </ul>
     </div>
@@ -69,7 +71,7 @@
           <a href="#" class="anchor-btn">Learn more <i class="fas fa-arrow-right pd-lt-10"></i></a> </div>
       </div>
       <div class="col-md-6 mb-50">
-        <div class="section-img"> <img src="images/about.jpg" alt="" class="img-responsive"/> </div>
+        <div class="section-img"> <img src="{% static 'images/about.jpg' %}" alt="" class="img-responsive"/> </div>
       </div>
     </div>
   </div>
@@ -145,117 +147,6 @@
 
 <!-- End Services --> 
 
-<!-- Gallery -->
-<div class="portfolio section-padding" data-scroll-index='3'>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-12 section-title text-center">
-        <h3>Check our recent works</h3>
-        <p>Vestibulum elementum dui tempus dolor gravida, vel mattis erat fermentum.</p>
-        <span class="section-title-line"></span> </div>
-      <div class="filtering text-center mb-30">
-        <button type="button" data-filter='*' class="active">All</button>
-        <button type="button" data-filter='.summer'>Summer</button>
-        <button type="button" data-filter='.winter'>Winter</button>
-        <button type="button" data-filter='.rainy'>Rainy</button>
-        <button type="button" data-filter='.spring'>Spring</button>
-      </div>
-      <div class="gallery no-padding col-lg-12 col-sm-12">
-        <div class="col-lg-4 col-sm-6 spring no-padding">
-          <div class="item-img"> <a class="single-image" href="images/gall1.jpg"></a>
-            <div class="part-img"> <img src="images/gall1.jpg" alt="image">
-              <div class="overlay-img">
-                <h4>Spring</h4>
-                <h6>Autumn Leaves</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 spring no-padding">
-          <div class="item-img"> <a class="single-image" href="images/gall2.jpg"></a>
-            <div class="part-img"> <img src="images/gall2.jpg" alt="image">
-              <div class="overlay-img">
-                <h4>Spring</h4>
-                <h6>Flower Pot</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 spring no-padding">
-          <div class="item-img"> <a class="single-image" href="images/gall3.jpg"></a>
-            <div class="part-img"> <img src="images/gall3.jpg" alt="image">
-              <div class="overlay-img">
-                <h4>Spring</h4>
-                <h6>Bird with Flower</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 summer no-padding">
-          <div class="item-img"> <a class="single-image" href="images/gall4.jpg"></a>
-            <div class="part-img"> <img src="images/gall4.jpg" alt="image">
-              <div class="overlay-img">
-                <h4>Summer</h4>
-                <h6>Vacation Trip Van</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 winter no-padding">
-          <div class="item-img"> <a class="single-image" href="images/gall5.jpg"></a>
-            <div class="part-img"> <img src="images/gall5.jpg" alt="image">
-              <div class="overlay-img">
-                <h4>Winter</h4>
-                <h6>Girl in the snow</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 rainy no-padding">
-          <div class="item-img"> <a class="single-image" href="images/gall6.jpg"></a>
-            <div class="part-img"> <img src="images/gall6.jpg" alt="image">
-              <div class="overlay-img">
-                <h4>Rainy</h4>
-                <h6>Man with an Umberalla</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 summer no-padding">
-          <div class="item-img"> <a class="single-image" href="images/gall7.jpg"></a>
-            <div class="part-img"> <img src="images/gall7.jpg" alt="image">
-              <div class="overlay-img">
-                <h4>Summer</h4>
-                <h6>New Beginning</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 rainy no-padding">
-          <div class="item-img"> <a class="single-image" href="images/gall8.jpg"></a>
-            <div class="part-img"> <img src="images/gall8.jpg" alt="image">
-              <div class="overlay-img">
-                <h4>Rainy</h4>
-                <h6>Girl in the Rain</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 summer no-padding">
-          <div class="item-img"> <a class="single-image" href="images/gall9.jpg"></a>
-            <div class="part-img"> <img src="images/gall9.jpg" alt="image">
-              <div class="overlay-img">
-                <h4>Summer</h4>
-                <h6>Fun at the Seashores</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- End Gallery -->
 <!-- Testimonials -->
 <div class="testimonials">
   <div class="testimonials-overlay section-padding">
@@ -380,15 +271,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script> 
 <!-- owl carousel js --> 
-<script src="js/owl.carousel.min.js"></script> 
+<script src="{% static 'js/owl.carousel.min.js' %}"></script> 
 <!-- magnific-popup --> 
-<script src="js/jquery.fancybox.min.js"></script> 
+<script src="{% static 'js/jquery.fancybox.min.js' %}"></script> 
 
 <!-- scrollIt js --> 
-<script src="js/scrollIt.min.js"></script> 
+<script src="{% static 'js/scrollIt.min.js' %}"></script> 
 
 <!-- isotope.pkgd.min js --> 
-<script src="js/isotope.pkgd.min.js"></script> 
+<script src="{% static 'js/isotope.pkgd.min.js' %}"></script> 
 <script>
   $(window).on("scroll",function () {
 
@@ -398,13 +289,13 @@
       if(bodyScroll > 130){
 
           navbar.addClass("nav-scroll");
-          $('.navbar-logo img').attr('src','images/logo-black.png');
+          $('.navbar-logo img').attr('src',"{% static 'images/logo-black.png' %}");
 
 
       }else{
 
           navbar.removeClass("nav-scroll");
-          $('.navbar-logo img').attr('src','images/logo-white.png');
+          $('.navbar-logo img').attr('src',"{% static 'images/logo-white.png' %}");
 
       }
 
@@ -420,13 +311,13 @@ navbar = $(".navbar");
 if(bodyScroll > 130){
 
 navbar.addClass("nav-scroll");
-$('.navbar-logo img').attr('src','images/logo-black.png');
+$('.navbar-logo img').attr('src',"{% static 'images/logo-black.png' %}");
 
 
 }else{
 
 navbar.removeClass("nav-scroll");
-$('.navbar-logo img').attr('src','images/logo-white.png');
+$('.navbar-logo img').attr('src',"{% static 'images/logo-white.png' %}");
 
 }
 
