@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Log in as company</title>
+</head>
+<body>
+      <form method="POST" action="company_login">
+
+         {% csrf_token %}
+         
+         <label for="company_website_url">Company URL</label><br>
+         <input type="text" id="company_website_url" name="company_website_url" required><br>
+
+         <label for="password">Password</label><br>
+         <input type="text" id="password" name="password" required><br>
+
+         <button type="submit">
+            Submit
+         </button>
+      </form>
+     {% if msg %}
+        <h1>{{msg}}</h1>
+     {% endif %}
+</body>
+</html>

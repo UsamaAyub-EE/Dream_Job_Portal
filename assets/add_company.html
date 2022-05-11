@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Add Company</title>
+</head>
+<body>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <label for="cname">Company name:</label><br>
+        <input type="text" id="cname" name="cname" required><br>
+
+        <label for="cdes">Company Description:</label><br>
+        <input type="text" id="cdes" name="cdes"><br>
+
+        <label for="url">Company URL:</label><br>
+        <input type="text" id="url" name="url" required><br>
+
+        <label for="est">Company Est. Date:</label><br>
+        <input type="date" id="est" name="est"><br>
+
+        <label for="password">Password:</label><br>
+        <input type="text" id="password" name="password" required><br>
+
+        <label for="buss_id">Business Stream</label>
+        <select name="buss_id" id="buss_id">
+            {% for b_stream in business_streams %}
+                <option value="{{ b_stream.id }}">{{ b_stream.business_stream_name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">
+           Submit
+        </button>
+     </form>
+     {% if msg %}
+        <h1>{{msg}}</h1>
+     {% endif %}
+</body>
+</html>

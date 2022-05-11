@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Post a job</title>
+</head>
+<body>
+    <h1>Company id is {{comp_id}}</h1>
+    <form method="POST" action="add_job">
+        {% csrf_token %}
+        <label for="jdes">Job Description:</label><br>
+        <input type="text" id="jdes" name="jdes" required><br>
+
+        <label for="country">Country of job location:</label><br>
+        <input type="text" id="country" name="country" required><br>
+
+        <label for="state">State:</label><br>
+        <input type="text" id="state" name="state" required><br>
+
+        <label for="city">City:</label><br>
+        <input type="text" id="city" name="city" required><br>
+
+        <label for="street_address">Street address:</label><br>
+        <input type="text" id="street_address" name="street_address" required><br>
+
+        <label for="zip_code">Zip code:</label><br>
+        <input type="number" id="zip_code" name="zip_code" required><br>
+
+        <label for="jobtype">Jobtype</label>
+        <select name="jobtype" id="jobtype">
+            {% for jobtype in jobtypes %}
+                <option value="{{ jobtype.id }}">{{ jobtype.job_type }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" name="comp_id" value="{{comp_id}}">
+           Submit
+        </button>
+     </form>
+     {% if msg %}
+        <h1>{{msg}}</h1>
+     {% endif %}
+</body>
+</html>
