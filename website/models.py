@@ -8,15 +8,33 @@ from django.db import models
 #   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
-from django.db import models
 
 class BusinessStream(models.Model):
     # business_stream_id = models.AutoField(db_column= id)
-    business_stream_name = models.CharField(max_length=100)
+    business_stream_name = models.CharField(max_length=100,unique=True)
 
     class Meta:
-        managed = False
         db_table = 'business_stream'
+
+class JobType(models.Model):
+    job_type = models.CharField(max_length=20,unique=True)
+
+    class Meta:
+        db_table = 'job_type'
+
+
+class User(models.Model):
+    user_id = models.AutoField(primary_key=True)
+    user_type = models.IntegerField(blank=True, null=True)
+    email = models.CharField(max_length=30,unique=True)
+    password = models.CharField(max_length=20)
+    gender = models.CharField(max_length=10,null=True)
+    dob = models.DateTimeField(blank=True, null=True)
+    is_active = models.IntegerField(blank=True, null=True)
+    phone_no = models.CharField(max_length=24,unique=True,null=True)
+
+    class Meta:
+        db_table = 'user'
 
 
 class Company(models.Model):
@@ -36,12 +54,11 @@ class EducationalDetail(models.Model):
     degree_certificate_name = models.CharField(max_length=45)
     major = models.CharField(max_length=30)
     percentage = models.FloatField(blank=True, null=True)
-    cgpa = models.FloatField(db_column='CGPA', blank=True, null=True)  # Field name made lowercase.
+    cgpa = models.FloatField(blank=True, null=True)  # Field name made lowercase.
     start_date = models.DateTimeField(blank=True, null=True)
     completion_detail = models.DateTimeField(blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = 'educational_detail'
 
 
@@ -58,18 +75,7 @@ class ExperienceDetail(models.Model):
     description = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = 'experience_detail'
-
-
-class JobApplications(models.Model):
-    job_post = models.ForeignKey('JobPost', models.DO_NOTHING)
-    job_seeker = models.ForeignKey('JobSeeker', models.DO_NOTHING)
-    apply_date = models.DateTimeField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'job_applications'
 
 
 class JobLocation(models.Model):
@@ -84,20 +90,9 @@ class JobLocation(models.Model):
         db_table = 'job_location'
 
 
-class JobPost(models.Model):
-    created_date = models.DateTimeField(blank=True, null=True)
-    is_active = models.IntegerField(blank=True, null=True)
-    job_description = models.CharField(max_length=100, blank=True, null=True)
-    job_location = models.ForeignKey('JobLocation', models.DO_NOTHING, blank=True, null=True)
-    company = models.ForeignKey('Company', models.DO_NOTHING, blank=True, null=True)
-    job_type = models.ForeignKey('JobType', models.DO_NOTHING, blank=True, null=True)
-
-    class Meta:
-        db_table = 'job_post'
-
 
 class JobSeeker(models.Model):
-    user = models.ForeignKey('User', models.DO_NOTHING,null=True)
+    user = models.ForeignKey(User, models.DO_NOTHING,null=True)
     f_name = models.CharField(max_length=20,blank=True, null=True)
     l_name = models.CharField(max_length=20,blank=True, null=True)
     current_salary = models.IntegerField(blank=True, null=True)
@@ -107,21 +102,31 @@ class JobSeeker(models.Model):
     class Meta:
         db_table = 'job_seeker'
 
-class JobType(models.Model):
-    job_type = models.CharField(max_length=20,unique=True)
+class JobPost(models.Model):
+    created_date = models.DateTimeField(blank=True, null=True)
+    is_active = models.IntegerField(blank=True, null=True)
+    job_description = models.CharField(max_length=100, blank=True, null=True)
+    job_location = models.ForeignKey(JobLocation, models.DO_NOTHING, blank=True, null=True)
+    company = models.ForeignKey(Company, models.DO_NOTHING, blank=True, null=True)
+    job_type = models.ForeignKey(JobType, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
-        db_table = 'job_type'
+        db_table = 'job_post'
 
 
-class SeekerSkillSet(models.Model):
-    skill = models.ForeignKey('SkillSet', models.DO_NOTHING)
-    seeker = models.ForeignKey('User', models.DO_NOTHING)
-    skill_level = models.CharField(max_length=20, blank=True, null=True)
+
+class JobApplications(models.Model):
+    job_post = models.ForeignKey(JobPost, models.DO_NOTHING)
+    job_seeker = models.ForeignKey(JobSeeker, models.DO_NOTHING)
+    apply_date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
-        managed = False
-        db_table = 'seeker_skill_set'
+        db_table = 'job_applications'
+
+
+
+
+
 
 
 class SkillSet(models.Model):
@@ -129,22 +134,17 @@ class SkillSet(models.Model):
     skill_name = models.CharField(max_length=20, blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = 'skill_set'
 
-
-class User(models.Model):
-    user_id = models.AutoField(primary_key=True)
-    user_type = models.IntegerField(blank=True, null=True)
-    email = models.CharField(max_length=30,unique=True)
-    password = models.CharField(max_length=20)
-    gender = models.CharField(max_length=10,null=True)
-    dob = models.DateTimeField(blank=True, null=True) 
-    is_active = models.IntegerField(blank=True, null=True)
-    phone_no = models.CharField(max_length=24,unique=True,null=True)
+class SeekerSkillSet(models.Model):
+    skill = models.ForeignKey(SkillSet, models.DO_NOTHING)
+    seeker = models.ForeignKey(User, models.DO_NOTHING)
+    skill_level = models.CharField(max_length=20, blank=True, null=True)
 
     class Meta:
-        db_table = 'user'
+        db_table = 'seeker_skill_set'
+
+
 
 
 class UserLog(models.Model):
@@ -153,5 +153,4 @@ class UserLog(models.Model):
     last_job_apply_date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = 'user_log'
